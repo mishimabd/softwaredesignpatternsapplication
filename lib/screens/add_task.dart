@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:softwaredesignpatternsapplication/widgets/button_widget.dart';
 import 'package:softwaredesignpatternsapplication/widgets/error_massage_warning.dart';
@@ -6,11 +7,24 @@ import 'package:get/get.dart';
 
 import '../utils/const.dart';
 
+final String title = '';
+final String description = '';
+
 class AddTask extends StatefulWidget {
   const AddTask({super.key});
-
   @override
   State<AddTask> createState() => _AddTaskState();
+}
+
+createToDo() {
+  DocumentReference documentReference =
+      FirebaseFirestore.instance.collection("MyTodos").doc(title);
+
+  Map<String, String> todoList = {"todotitle": title, "tododesc": description};
+
+  documentReference
+      .set(todoList)
+      .whenComplete(() => print("Data Stored Successfully"));
 }
 
 class _AddTaskState extends State<AddTask> {
@@ -81,7 +95,9 @@ class _AddTaskState extends State<AddTask> {
                 const SizedBox(height: 20),
                 GestureDetector(
                   onTap: () {
-                    if (_dataValidation()) {}
+                    if (_dataValidation()) {
+                      createToDo();
+                    }
                   },
                   child: const ButtonWidget(
                       backgroundColor: AppColors.mainColor,
