@@ -94,6 +94,7 @@ class AllTasks extends StatelessWidget {
                     return Future.delayed(const Duration(seconds: 1),
                         () => direction == DismissDirection.endToStart);
                   }
+                  return null;
                 },
                 key: ObjectKey(index),
                 child: Container(

@@ -22,7 +22,6 @@ class _AddTaskState extends State<AddTask> {
     // ignore: no_leading_underscores_for_local_identifiers
     bool _dataValidation() {
       if (textController.text.trim() == '') {
-        Message.taskErrorOnWarning('Task Name', 'Task Name is empty');
         return false;
       } else if (detailController.text.trim() == '') {
         Message.taskErrorOnWarning('Task Detail', 'Task Detail is empty');
@@ -34,7 +33,6 @@ class _AddTaskState extends State<AddTask> {
       }
       return true;
     }
-    
 
     return Scaffold(
         body: Container(
