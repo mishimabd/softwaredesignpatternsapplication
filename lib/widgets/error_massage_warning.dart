@@ -8,11 +8,13 @@ abstract class Message {
         backgroundColor: Colors.red,
         titleText: Text(taskName,
             style: const TextStyle(
+                fontFamily: 'Poppins',
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Colors.white)),
         messageText: Text(taskError,
             style: const TextStyle(
+                fontFamily: 'Poppins',
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
                 color: Colors.white)));

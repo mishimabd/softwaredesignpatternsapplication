@@ -30,6 +30,10 @@ class _AddTaskState extends State<AddTask> {
         Message.taskErrorOnWarning(
             'Task Detail', 'Your task name should be more than 10 symbols.');
         return false;
+      } else if (detailController.text.length <= 20) {
+        Message.taskErrorOnWarning(
+            'Task Detail', 'Your task detail should be more than 10 symbols.');
+        return false;
       }
       return true;
     }
