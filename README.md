@@ -1,4 +1,4 @@
-# softwaredesignpatternsapplication
+# To-Do-List written by Flutter with Firebase.
 
 A new Flutter project.
 
