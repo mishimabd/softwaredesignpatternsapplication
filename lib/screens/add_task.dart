@@ -7,8 +7,8 @@ import 'package:get/get.dart';
 
 import '../utils/const.dart';
 
-final String title = '';
-final String description = '';
+final String title = ' ';
+final String description = ' ';
 
 class AddTask extends StatefulWidget {
   const AddTask({super.key});
