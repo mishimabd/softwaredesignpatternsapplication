@@ -5,7 +5,8 @@ import '../../widgets/error_massage_warning.dart';
 
 class ErrorMforDetail extends Message {
   @override
-  void taskErrorOnWarningDetails(String taskName, String taskError) {
+  // ignore: override_on_non_overriding_member
+  void taskErrorOnWarning(String taskName, String taskError) {
     Get.snackbar(taskName, taskError,
         backgroundColor: Colors.red,
         titleText: Text(taskName,
