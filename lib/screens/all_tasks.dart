@@ -37,7 +37,7 @@ class AllTasks extends StatelessWidget {
         height: MediaQuery.of(context).size.height / 3.2,
         decoration: const BoxDecoration(
             image: DecorationImage(
-                fit: BoxFit.fill, image: AssetImage('assets/wallpaper.jpg'))),
+                fit: BoxFit.cover, image: AssetImage('assets/wallpaper.jpg'))),
         child: InkWell(
             onTap: () {
               Get.back();

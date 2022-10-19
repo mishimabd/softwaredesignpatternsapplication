@@ -33,12 +33,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         fontFamily: 'Poppins',
                         fontSize: 60,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.mainColor),
+                        color: Colors.white),
                     children: [
                   TextSpan(
                       text: '\nProject for finishing all 5 patterns!',
                       style: TextStyle(
-                          fontSize: 12, color: AppColors.smallTextColor))
+                          fontSize: 12,
+                          color: Color.fromARGB(231, 246, 225, 207)))
                 ])),
             SizedBox(height: MediaQuery.of(context).size.height / 2.5),
             InkWell(

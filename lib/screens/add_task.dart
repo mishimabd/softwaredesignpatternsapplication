@@ -9,9 +9,8 @@ import '../patterns/template/error_message_for_details.dart';
 import '../patterns/template/error_message_for_text.dart';
 import '../utils/const.dart';
 
-List todoList = [];
-late String title;
-late String description;
+const String title = ' ';
+const String description = ' ';
 
 Message messageText = ErrorMforText();
 Message messageDetail = ErrorMforDetail();
@@ -34,22 +33,22 @@ createToDo() {
 }
 
 class _AddTaskState extends State<AddTask> {
-  TextEditingController textController = TextEditingController();
-  TextEditingController detailController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
+    TextEditingController textController = TextEditingController();
+    TextEditingController detailController = TextEditingController();
+
     // ignore: no_leading_underscores_for_local_identifiers
     bool _dataValidation() {
       if (textController.text.trim() == '') {
-        messageText.taskErrorOnWarning('Task Name', 'Task Detail is empty.');
+        messageText.taskErrorOnWarning('Task Name', 'Task Name is empty.');
         return false;
       } else if (detailController.text.trim() == '') {
         messageDetail.taskErrorOnWarning('Task Detail', 'Task Detail is empty');
         return false;
       } else if (textController.text.length < 5) {
         messageText.taskErrorOnWarning(
-            'Task Detail', 'Your task name should be more than 5 symbols.');
+            'Task Name', 'Your task name should be more than 5 symbols.');
         return false;
       } else if (detailController.text.length <= 10) {
         messageDetail.taskErrorOnWarning(
@@ -103,10 +102,6 @@ class _AddTaskState extends State<AddTask> {
                 GestureDetector(
                   onTap: () {
                     if (_dataValidation()) {
-                      setState(() {
-                        title = textController.text;
-                        description = detailController.text;
-                      });
                       createToDo();
                     }
                   },

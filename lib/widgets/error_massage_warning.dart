@@ -19,6 +19,4 @@ abstract class Message {
                 fontWeight: FontWeight.bold,
                 color: Colors.white)));
   }
-
-  void nigger() {}
 }

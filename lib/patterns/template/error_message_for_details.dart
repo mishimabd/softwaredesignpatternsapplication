@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../widgets/error_massage_warning.dart';
 
-class ErrorMforText extends Message {
+class ErrorMforDetail extends Message {
   @override
   void taskErrorOnWarningDetails(String taskName, String taskError) {
     Get.snackbar(taskName, taskError,
