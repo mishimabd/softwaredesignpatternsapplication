@@ -41,15 +41,16 @@ class _AddTaskState extends State<AddTask> {
     // ignore: no_leading_underscores_for_local_identifiers
     bool _dataValidation() {
       if (textController.text.trim() == '') {
+        messageText.taskErrorOnWarning('Task Name', 'Task Detail is empty.');
         return false;
       } else if (detailController.text.trim() == '') {
         messageDetail.taskErrorOnWarning('Task Detail', 'Task Detail is empty');
         return false;
-      } else if (textController.text.length < 10) {
+      } else if (textController.text.length < 5) {
         messageText.taskErrorOnWarning(
-            'Task Detail', 'Your task name should be more than 10 symbols.');
+            'Task Detail', 'Your task name should be more than 5 symbols.');
         return false;
-      } else if (detailController.text.length <= 20) {
+      } else if (detailController.text.length <= 10) {
         messageDetail.taskErrorOnWarning(
             'Task Detail', 'Your task detail should be more than 10 symbols.');
         return false;
