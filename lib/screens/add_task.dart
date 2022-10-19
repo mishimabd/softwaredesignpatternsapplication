@@ -9,8 +9,9 @@ import '../patterns/template/error_message_for_details.dart';
 import '../patterns/template/error_message_for_text.dart';
 import '../utils/const.dart';
 
-const String title = ' ';
-const String description = ' ';
+List todoList = [];
+late String title;
+late String description;
 
 Message messageText = ErrorMforText();
 Message messageDetail = ErrorMforDetail();
@@ -33,11 +34,11 @@ createToDo() {
 }
 
 class _AddTaskState extends State<AddTask> {
+  TextEditingController textController = TextEditingController();
+  TextEditingController detailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController textController = TextEditingController();
-    TextEditingController detailController = TextEditingController();
-
     // ignore: no_leading_underscores_for_local_identifiers
     bool _dataValidation() {
       if (textController.text.trim() == '') {
@@ -102,6 +103,10 @@ class _AddTaskState extends State<AddTask> {
                 GestureDetector(
                   onTap: () {
                     if (_dataValidation()) {
+                      setState(() {
+                        title = textController.text;
+                        description = detailController.text;
+                      });
                       createToDo();
                     }
                   },
