@@ -5,10 +5,15 @@ import 'package:softwaredesignpatternsapplication/widgets/error_massage_warning.
 import 'package:softwaredesignpatternsapplication/widgets/text_field_widget.dart';
 import 'package:get/get.dart';
 
+import '../patterns/template/error_message_for_details.dart';
+import '../patterns/template/error_message_for_text.dart';
 import '../utils/const.dart';
 
-final String title = ' ';
-final String description = ' ';
+const String title = ' ';
+const String description = ' ';
+
+Message messageText = ErrorMforText();
+Message messageDetail = ErrorMforDetail();
 
 class AddTask extends StatefulWidget {
   const AddTask({super.key});
@@ -38,14 +43,14 @@ class _AddTaskState extends State<AddTask> {
       if (textController.text.trim() == '') {
         return false;
       } else if (detailController.text.trim() == '') {
-        Message.taskErrorOnWarning('Task Detail', 'Task Detail is empty');
+        messageDetail.taskErrorOnWarning('Task Detail', 'Task Detail is empty');
         return false;
       } else if (textController.text.length < 10) {
-        Message.taskErrorOnWarning(
+        messageText.taskErrorOnWarning(
             'Task Detail', 'Your task name should be more than 10 symbols.');
         return false;
       } else if (detailController.text.length <= 20) {
-        Message.taskErrorOnWarning(
+        messageDetail.taskErrorOnWarning(
             'Task Detail', 'Your task detail should be more than 10 symbols.');
         return false;
       }

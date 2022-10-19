@@ -1,9 +1,11 @@
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-//Template
-abstract class Message {
-  void taskErrorOnWarning(String taskName, String taskError) {
+import '../../widgets/error_massage_warning.dart';
+
+class ErrorMforText extends Message {
+  @override
+  void taskErrorOnWarningDetails(String taskName, String taskError) {
     Get.snackbar(taskName, taskError,
         backgroundColor: Colors.red,
         titleText: Text(taskName,
@@ -19,6 +21,4 @@ abstract class Message {
                 fontWeight: FontWeight.bold,
                 color: Colors.white)));
   }
-
-  void nigger() {}
 }
