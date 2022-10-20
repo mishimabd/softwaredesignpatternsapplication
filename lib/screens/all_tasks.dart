@@ -102,7 +102,7 @@ class AllTasks extends StatelessWidget {
                         return null;
                       },
                       key: ObjectKey(null),
-                      child: (snapshot.data! as QuerySnapshot).docs.map(
+                      child: (snapshot.data!).docs.map(
                             (e) => Container(
                                 margin: const EdgeInsets.only(
                                     left: 20, right: 20, bottom: 10),
