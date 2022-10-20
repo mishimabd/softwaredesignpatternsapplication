@@ -102,13 +102,13 @@ class AllTasks extends StatelessWidget {
                         return null;
                       },
                       key: ObjectKey(null),
-                      child: Text('')
-                      // child: (snapshot.data! as  QuerySnapshot).docs.map((e)=> Container(
-                      //     margin: const EdgeInsets.only(
-                      //         left: 20, right: 20, bottom: 10),
-                      //     child: TaskWidget(
-                      //         text: e['name'], color: Colors.blueGrey)),)
-                      )
+                      child: (snapshot.data! as QuerySnapshot).docs.map(
+                            (e) => Container(
+                                margin: const EdgeInsets.only(
+                                    left: 20, right: 20, bottom: 10),
+                                child: TaskWidget(
+                                    text: e['name'], color: Colors.blueGrey)),
+                          ))
                 ]);
               }
               // ignore: curly_braces_in_flow_control_structures
