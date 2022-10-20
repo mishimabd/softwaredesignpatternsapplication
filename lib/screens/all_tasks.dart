@@ -10,12 +10,6 @@ class AllTasks extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List myTasks = [
-      "Finish homework",
-      "Do your dua 5 times",
-      "Clean your laptop",
-      "Call to your mother"
-    ];
     final leftIcon = Container(
         alignment: Alignment.centerLeft,
         margin: const EdgeInsets.only(bottom: 10),
@@ -65,8 +59,8 @@ class AllTasks extends StatelessWidget {
               Expanded(child: Container()),
               const Icon(Icons.calendar_month, color: AppColors.secondaryColor),
               const SizedBox(width: 20),
-              Text(myTasks.length.toString(),
-                  style: const TextStyle(
+              const Text('12',
+                  style: TextStyle(
                       fontSize: 20,
                       color: AppColors.secondaryColor,
                       fontFamily: 'Poppins')),
@@ -79,8 +73,15 @@ class AllTasks extends StatelessWidget {
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasData) {
-                return ListView(children: [
-                  Dismissible(
+                return ListView.builder(
+                  itemCount: snapshot.data!.docs.length,
+                  itemBuilder: (context, index) {
+                    final DocumentSnapshot documentSnapshot =
+                        snapshot.data!.docs[index];
+                    return Dismissible(
+                      child: TaskWidget(
+                          text: documentSnapshot['name'],
+                          color: Colors.blueGrey),
                       background: leftIcon,
                       secondaryBackground: rightIcon,
                       onDismissed: (DismissDirection direction) {
@@ -101,15 +102,10 @@ class AllTasks extends StatelessWidget {
                         }
                         return null;
                       },
-                      key: ObjectKey(null),
-                      child: (snapshot.data!).docs.map(
-                            (e) => Container(
-                                margin: const EdgeInsets.only(
-                                    left: 20, right: 20, bottom: 10),
-                                child: TaskWidget(
-                                    text: e['name'], color: Colors.blueGrey)),
-                          ))
-                ]);
+                      key: const ObjectKey(null),
+                    );
+                  },
+                );
               }
               // ignore: curly_braces_in_flow_control_structures
               return const Center(child: CircularProgressIndicator());
