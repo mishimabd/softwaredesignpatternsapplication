@@ -8,18 +8,18 @@ class ErrorMforDetail extends Message {
   // ignore: override_on_non_overriding_member
   void taskErrorOnWarning(String taskName, String taskError) {
     Get.snackbar(taskName, taskError,
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.white,
         titleText: Text(taskName,
             style: const TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Colors.white)),
+                color: Colors.green)),
         messageText: Text(taskError,
             style: const TextStyle(
                 fontFamily: 'Poppins',
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
-                color: Colors.white)));
+                color: Colors.green)));
   }
 }

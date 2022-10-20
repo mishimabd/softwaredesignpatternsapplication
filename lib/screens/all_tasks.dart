@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:softwaredesignpatternsapplication/utils/const.dart';
 import 'package:softwaredesignpatternsapplication/widgets/bottomSheet.dart';
@@ -72,37 +73,46 @@ class AllTasks extends StatelessWidget {
             ],
           )),
       Flexible(
-        child: ListView.builder(
-            itemCount: myTasks.length,
-            itemBuilder: (context, index) {
-              return Dismissible(
-                background: leftIcon,
-                secondaryBackground: rightIcon,
-                onDismissed: (DismissDirection direction) {
-                  print('after dismiss');
-                },
-                confirmDismiss: (DismissDirection direction) async {
-                  if (direction == DismissDirection.startToEnd) {
-                    showModalBottomSheet(
-                        backgroundColor: Colors.transparent,
-                        barrierColor: Colors.transparent,
-                        context: context,
-                        builder: (_) {
-                          return const BottomSheetModalVersion();
-                        });
-                  } else {
-                    return Future.delayed(const Duration(seconds: 1),
-                        () => direction == DismissDirection.endToStart);
-                  }
-                  return null;
-                },
-                key: ObjectKey(index),
-                child: Container(
-                    margin:
-                        const EdgeInsets.only(left: 20, right: 20, bottom: 10),
-                    child: TaskWidget(
-                        text: myTasks[index], color: Colors.blueGrey)),
-              );
+        child: StreamBuilder(
+            stream:
+                FirebaseFirestore.instance.collection('MyTodos').snapshots(),
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasData) {
+                return ListView(children: [
+                  Dismissible(
+                      background: leftIcon,
+                      secondaryBackground: rightIcon,
+                      onDismissed: (DismissDirection direction) {
+                        print('after dismiss');
+                      },
+                      confirmDismiss: (DismissDirection direction) async {
+                        if (direction == DismissDirection.startToEnd) {
+                          showModalBottomSheet(
+                              backgroundColor: Colors.transparent,
+                              barrierColor: Colors.transparent,
+                              context: context,
+                              builder: (_) {
+                                return const BottomSheetModalVersion();
+                              });
+                        } else {
+                          return Future.delayed(const Duration(seconds: 1),
+                              () => direction == DismissDirection.endToStart);
+                        }
+                        return null;
+                      },
+                      key: ObjectKey(null),
+                      child: Text('')
+                      // child: (snapshot.data! as  QuerySnapshot).docs.map((e)=> Container(
+                      //     margin: const EdgeInsets.only(
+                      //         left: 20, right: 20, bottom: 10),
+                      //     child: TaskWidget(
+                      //         text: e['name'], color: Colors.blueGrey)),)
+                      )
+                ]);
+              }
+              // ignore: curly_braces_in_flow_control_structures
+              return const Center(child: CircularProgressIndicator());
             }),
       )
     ]));

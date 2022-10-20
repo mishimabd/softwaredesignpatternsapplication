@@ -9,9 +9,9 @@ import '../patterns/template/error_message_for_details.dart';
 import '../patterns/template/error_message_for_text.dart';
 import '../utils/const.dart';
 
-const String title = ' ';
-const String description = ' ';
-
+String title = '';
+String description = '';
+List todoList = [];
 Message messageText = ErrorMforText();
 Message messageDetail = ErrorMforDetail();
 
@@ -23,9 +23,9 @@ class AddTask extends StatefulWidget {
 
 createToDo() {
   DocumentReference documentReference =
-      FirebaseFirestore.instance.collection("MyTodos").doc(title);
+      FirebaseFirestore.instance.collection('MyTodos').doc(title);
 
-  Map<String, String> todoList = {"todotitle": title, "tododesc": description};
+  Map<String, String> todoList = {'todotitle': title, 'tododesc': description};
 
   documentReference
       .set(todoList)
@@ -80,7 +80,7 @@ class _AddTaskState extends State<AddTask> {
                       Get.back();
                     },
                     icon: const Icon(Icons.arrow_back),
-                    color: AppColors.mainColor)
+                    color: Colors.white)
               ],
             ),
             Column(
@@ -100,9 +100,14 @@ class _AddTaskState extends State<AddTask> {
                     borderRadius: 15),
                 const SizedBox(height: 20),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async {
                     if (_dataValidation()) {
+                      setState(() {
+                        title = textController.text;
+                        description = detailController.text;
+                      });
                       createToDo();
+                      Get.back();
                     }
                   },
                   child: const ButtonWidget(
