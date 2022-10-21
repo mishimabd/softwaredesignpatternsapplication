@@ -18,14 +18,14 @@ class BottomSheetModalVersion extends StatelessWidget {
           children: const [
             ButtonWidget(
                 backgroundColor: AppColors.mainColor,
-                text: 'View Task',
+                text: 'View',
                 textColor: Colors.white),
             SizedBox(
               height: 20,
             ),
             ButtonWidget(
                 backgroundColor: AppColors.mainColor,
-                text: 'View Task',
+                text: 'Edit',
                 textColor: Colors.white),
           ],
         ));

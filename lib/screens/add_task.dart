@@ -88,7 +88,7 @@ class _AddTaskState extends State<AddTask> {
                 TextFieldWidget(
                     maxLines: 1,
                     textEditingController: textController,
-                    hintText: "Add your task",
+                    hintText: "Add title of your task",
                     borderRadius: 30),
                 const SizedBox(
                   height: 20,
@@ -96,7 +96,7 @@ class _AddTaskState extends State<AddTask> {
                 TextFieldWidget(
                     maxLines: 3,
                     textEditingController: detailController,
-                    hintText: "Add your task",
+                    hintText: "Add details to your task",
                     borderRadius: 15),
                 const SizedBox(height: 20),
                 GestureDetector(

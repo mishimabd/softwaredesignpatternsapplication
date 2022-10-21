@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:softwaredesignpatternsapplication/utils/const.dart';
 import 'package:softwaredesignpatternsapplication/widgets/bottomSheet.dart';
+import 'package:softwaredesignpatternsapplication/widgets/delete_task.dart';
 import 'package:softwaredesignpatternsapplication/widgets/task_widget.dart';
 import 'package:get/get.dart';
 
@@ -90,7 +91,7 @@ class AllTasks extends StatelessWidget {
                       background: leftIcon,
                       secondaryBackground: rightIcon,
                       onDismissed: (DismissDirection direction) {
-                        print('after dismiss');
+                        delete(documentSnapshot.id);
                       },
                       confirmDismiss: (DismissDirection direction) async {
                         if (direction == DismissDirection.startToEnd) {
