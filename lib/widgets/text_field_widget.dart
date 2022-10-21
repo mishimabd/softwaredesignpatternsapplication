@@ -27,10 +27,12 @@ class TextFieldWidget extends StatelessWidget {
           hintText: hintText,
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(borderRadius),
-              borderSide: const BorderSide(color: Colors.transparent, width: 1)),
+              borderSide:
+                  const BorderSide(color: Colors.transparent, width: 1)),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(borderRadius),
-              borderSide: const BorderSide(color: Colors.transparent, width: 1))),
+              borderSide:
+                  const BorderSide(color: Colors.transparent, width: 1))),
     );
   }
 }
