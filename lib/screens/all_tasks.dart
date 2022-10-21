@@ -41,8 +41,7 @@ class AllTasks extends StatelessWidget {
             onTap: () {
               Get.back();
             },
-            child:
-                const Icon(Icons.arrow_back, color: AppColors.secondaryColor)),
+            child: const Icon(Icons.arrow_back, color: Colors.white)),
       ),
       const SizedBox(height: 10),
       Container(

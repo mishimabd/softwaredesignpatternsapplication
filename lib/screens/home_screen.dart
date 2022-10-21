@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
             InkWell(
               onTap: () {
                 Get.to(() => const AllTasks(),
-                    transition: Transition.size,
+                    transition: Transition.cupertinoDialog,
                     duration: const Duration(milliseconds: 800));
               },
               child: const ButtonWidget(
