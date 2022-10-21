@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:softwaredesignpatternsapplication/utils/const.dart';
 
 class TaskWidget extends StatelessWidget {
   final String text;

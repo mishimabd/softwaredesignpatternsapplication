@@ -51,13 +51,13 @@ class AllTasks extends StatelessWidget {
               const Icon(Icons.home, color: AppColors.secondaryColor),
               const SizedBox(width: 20),
               Container(
-                child: const Icon(Icons.plus_one_rounded,
-                    color: Colors.white, size: 20),
                 width: 25,
                 height: 25,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.5),
                     color: Colors.black),
+                child:  const Icon(Icons.plus_one_rounded,
+                    color: Colors.white, size: 20),
               ),
               Expanded(child: Container()),
               const Icon(Icons.calendar_month, color: AppColors.secondaryColor),

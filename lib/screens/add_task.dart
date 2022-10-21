@@ -29,6 +29,7 @@ createToDo() {
 
   documentReference
       .set(todoList)
+      // ignore: avoid_print
       .whenComplete(() => print("Data Stored Successfully"));
 }
 

@@ -8,7 +8,7 @@ class TextFieldWidget extends StatelessWidget {
   final double borderRadius;
   final int maxLines;
 
-  TextFieldWidget(
+  const TextFieldWidget(
       {Key? key,
       required this.textEditingController,
       required this.maxLines,
