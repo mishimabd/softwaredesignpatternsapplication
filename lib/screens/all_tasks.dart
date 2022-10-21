@@ -51,7 +51,6 @@ class AllTasks extends StatelessWidget {
               const Icon(Icons.home, color: AppColors.secondaryColor),
               const SizedBox(width: 20),
               Container(
-                // ignore: sort_child_properties_last
                 child: const Icon(Icons.plus_one_rounded,
                     color: Colors.white, size: 20),
                 width: 25,
