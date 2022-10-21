@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:softwaredesignpatternsapplication/utils/const.dart';
 import 'package:softwaredesignpatternsapplication/widgets/bottomSheet.dart';
@@ -7,7 +8,9 @@ import 'package:softwaredesignpatternsapplication/widgets/task_widget.dart';
 import 'package:get/get.dart';
 
 class AllTasks extends StatelessWidget {
-  const AllTasks({super.key});
+  const AllTasks({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +44,7 @@ class AllTasks extends StatelessWidget {
             child:
                 const Icon(Icons.arrow_back, color: AppColors.secondaryColor)),
       ),
+      const SizedBox(height: 10),
       Container(
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Row(
@@ -73,9 +77,10 @@ class AllTasks extends StatelessWidget {
                 FirebaseFirestore.instance.collection('MyTodos').snapshots(),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              int loli = snapshot.data!.docs.length;
               if (snapshot.hasData) {
                 return ListView.builder(
-                  itemCount: snapshot.data!.docs.length,
+                  itemCount: loli,
                   itemBuilder: (context, index) {
                     final DocumentSnapshot documentSnapshot =
                         snapshot.data!.docs[index];
