@@ -79,9 +79,14 @@ class AllTasks extends StatelessWidget {
                     final DocumentSnapshot documentSnapshot =
                         snapshot.data!.docs[index];
                     return Dismissible(
-                      child: TaskWidget(
-                          text: documentSnapshot['name'],
-                          color: Colors.blueGrey),
+                      // ignore: sort_child_properties_last
+                      child: Container(
+                        margin: const EdgeInsets.only(
+                            left: 20.0, right: 20.0, bottom: 10),
+                        child: TaskWidget(
+                            text: documentSnapshot['todotitle'],
+                            color: Colors.blueGrey),
+                      ),
                       background: leftIcon,
                       secondaryBackground: rightIcon,
                       onDismissed: (DismissDirection direction) {
