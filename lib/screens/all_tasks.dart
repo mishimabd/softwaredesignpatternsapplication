@@ -7,11 +7,16 @@ import 'package:softwaredesignpatternsapplication/widgets/delete_task.dart';
 import 'package:softwaredesignpatternsapplication/widgets/task_widget.dart';
 import 'package:get/get.dart';
 
-class AllTasks extends StatelessWidget {
+class AllTasks extends StatefulWidget {
   const AllTasks({
     super.key,
   });
 
+  @override
+  State<AllTasks> createState() => _AllTasksState();
+}
+
+class _AllTasksState extends State<AllTasks> {
   @override
   Widget build(BuildContext context) {
     final leftIcon = Container(
@@ -56,7 +61,7 @@ class AllTasks extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.5),
                     color: Colors.black),
-                child:  const Icon(Icons.plus_one_rounded,
+                child: const Icon(Icons.plus_one_rounded,
                     color: Colors.white, size: 20),
               ),
               Expanded(child: Container()),
@@ -111,7 +116,7 @@ class AllTasks extends StatelessWidget {
                         }
                         return null;
                       },
-                      key: const ObjectKey(null),
+                      key: UniqueKey(),
                     );
                   },
                 );

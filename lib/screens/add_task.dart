@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:softwaredesignpatternsapplication/widgets/button_widget.dart';
 import 'package:softwaredesignpatternsapplication/widgets/error_massage_warning.dart';
 import 'package:softwaredesignpatternsapplication/widgets/text_field_widget.dart';
@@ -108,6 +109,7 @@ class _AddTaskState extends State<AddTask> {
                         description = detailController.text;
                       });
                       createToDo();
+                      dialog();
                       Get.back();
                     }
                   },
@@ -124,4 +126,17 @@ class _AddTaskState extends State<AddTask> {
           ]),
     ));
   }
+
+  void dialog() => showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) => Dialog(
+        child: Column(children: [
+          Lottie.asset('assets/lottie.json', repeat: false),
+          const Text('Your task added successfully', style: TextStyle(
+            fontFamily: 'Poppins',
+            fontSize: 24
+          ))
+        ],)
+      ));
 }

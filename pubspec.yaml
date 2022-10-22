@@ -39,6 +39,7 @@ dependencies:
   get: ^4.6.5
   cloud_firestore: ^3.5.1
   firebase_core: ^1.24.0
+  lottie: 
 
 dev_dependencies:
   flutter_test:
