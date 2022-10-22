@@ -109,8 +109,8 @@ class _AddTaskState extends State<AddTask> {
                         description = detailController.text;
                       });
                       createToDo();
-                      dialog();
                       Get.back();
+                      dialog();
                     }
                   },
                   child: const ButtonWidget(
@@ -131,12 +131,13 @@ class _AddTaskState extends State<AddTask> {
       barrierDismissible: false,
       context: context,
       builder: (context) => Dialog(
-        child: Column(children: [
+        child: Column(mainAxisSize: MainAxisSize.min ,children: [
           Lottie.asset('assets/lottie.json', repeat: false),
           const Text('Your task added successfully', style: TextStyle(
             fontFamily: 'Poppins',
             fontSize: 24
-          ))
+          )),
+          const SizedBox(height: 16.0,)
         ],)
       ));
 }
