@@ -22,14 +22,20 @@ class _AllTasksState extends State<AllTasks> {
         alignment: Alignment.centerLeft,
         margin: const EdgeInsets.only(bottom: 10),
         color: Colors.blue[900],
-        child: const Icon(color: Colors.white, Icons.edit));
+        child: const Padding(
+          padding:  EdgeInsets.only(left: 8.0),
+          child:  Icon(color: Colors.white, Icons.edit),
+        ));
     final rightIcon = Container(
         alignment: Alignment.centerRight,
         margin: const EdgeInsets.only(bottom: 10),
         color: Colors.red[900],
         child: const Padding(
           padding: EdgeInsets.all(3.0),
-          child: Icon(color: Colors.white, Icons.delete),
+          child: Padding(
+            padding: EdgeInsets.only(right: 10.0),
+            child: Icon(color: Colors.white, Icons.delete),
+          ),
         ));
     return Scaffold(
         body: Column(children: [

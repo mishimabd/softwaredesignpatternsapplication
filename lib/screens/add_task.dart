@@ -19,10 +19,8 @@ Message messageDetail = ErrorMforDetail();
 class AddTask extends StatefulWidget {
   const AddTask({super.key});
   @override
-  State<AddTask> createState() => AddTaskState();
+  State<AddTask> createState() => _AddTaskState();
 }
-
-late AnimationController dialogController;
 
 createToDo() {
   DocumentReference documentReference =
@@ -36,30 +34,24 @@ createToDo() {
       .whenComplete(() => print("Data Stored Successfully"));
 }
 
-class AddTaskState extends State<AddTask> with SingleTickerProviderStateMixin {
-  late AnimationController dialogController;
+class _AddTaskState extends State<AddTask> with SingleTickerProviderStateMixin {
+  late AnimationController controller;
 
   @override
   void initState() {
     super.initState();
 
-    dialogController = AnimationController(
-      duration: const Duration(seconds: 3),
+    controller = AnimationController(
+      duration: Duration(seconds: 3),
       vsync: this,
     );
 
-    dialogController.addStatusListener((status) {
+    controller.addStatusListener((status) async {
       if (status == AnimationStatus.completed) {
         Navigator.pop(context);
-        dialogController.reset();
+        controller.reset();
       }
     });
-  }
-
-  @override
-  void dispose() {
-    dialogController.dispose();
-    super.dispose();
   }
 
   @override
@@ -160,15 +152,16 @@ class AddTaskState extends State<AddTask> with SingleTickerProviderStateMixin {
               child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Lottie.asset('assets/lottie.json',
+              Lottie.asset('assets/done.json',
                   repeat: false,
-                  controller: dialogController,
+                  controller: controller,
                   onLoaded: (composition) {
-                dialogController.forward();
-              }
-              ),
-             const Text('Your task added successfully', textAlign: TextAlign.center,
-                 style: TextStyle(fontFamily: 'Poppins', fontSize: 20)),
+                controller.duration = composition.duration;
+                controller.forward();
+              }),
+              const Text('Your task added successfully',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontFamily: 'Poppins', fontSize: 20)),
               const SizedBox(
                 height: 16.0,
               )
