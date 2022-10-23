@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:softwaredesignpatternsapplication/utils/const.dart';
 import 'package:softwaredesignpatternsapplication/widgets/bottomSheet.dart';
 import 'package:softwaredesignpatternsapplication/widgets/delete_task.dart';
@@ -15,7 +16,27 @@ class AllTasks extends StatefulWidget {
   State<AllTasks> createState() => _AllTasksState();
 }
 
-class _AllTasksState extends State<AllTasks> {
+class _AllTasksState extends State<AllTasks>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+
+  @override
+  void initState() {
+    super.initState();
+
+    controller = AnimationController(
+      duration: const Duration(seconds: 3),
+      vsync: this,
+    );
+
+    controller.addStatusListener((status) async {
+      if (status == AnimationStatus.completed) {
+        Get.back();
+        controller.reset();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final leftIcon = Container(
@@ -23,8 +44,8 @@ class _AllTasksState extends State<AllTasks> {
         margin: const EdgeInsets.only(bottom: 10),
         color: Colors.blue[900],
         child: const Padding(
-          padding:  EdgeInsets.only(left: 8.0),
-          child:  Icon(color: Colors.white, Icons.edit),
+          padding: EdgeInsets.only(left: 8.0),
+          child: Icon(color: Colors.white, Icons.edit),
         ));
     final rightIcon = Container(
         alignment: Alignment.centerRight,
@@ -104,6 +125,7 @@ class _AllTasksState extends State<AllTasks> {
                       background: leftIcon,
                       secondaryBackground: rightIcon,
                       onDismissed: (DismissDirection direction) {
+                        dialogDelete();
                         delete(documentSnapshot.id);
                       },
                       confirmDismiss: (DismissDirection direction) async {
@@ -132,4 +154,27 @@ class _AllTasksState extends State<AllTasks> {
       )
     ]));
   }
+
+  void dialogDelete() => showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) => Dialog(
+              child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(height: 16.0,),
+              Lottie.asset('assets/delete.json',
+                  repeat: false,
+                  controller: controller, onLoaded: (composition) {
+                controller.duration = composition.duration;
+                controller.forward();
+              }),
+              const Text('Your task deleted successfully',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontFamily: 'Poppins', fontSize: 20)),
+              const SizedBox(
+                height: 16.0,
+              )
+            ],
+          )));
 }

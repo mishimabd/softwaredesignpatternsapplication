@@ -145,7 +145,7 @@ class _AddTaskState extends State<AddTask> with SingleTickerProviderStateMixin {
     ));
   }
 
-  void dialog() => showDialog(
+void dialog() => showDialog(
       barrierDismissible: false,
       context: context,
       builder: (context) => Dialog(
