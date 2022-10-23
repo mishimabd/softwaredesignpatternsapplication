@@ -19,8 +19,10 @@ Message messageDetail = ErrorMforDetail();
 class AddTask extends StatefulWidget {
   const AddTask({super.key});
   @override
-  State<AddTask> createState() => _AddTaskState();
+  State<AddTask> createState() => AddTaskState();
 }
+
+late AnimationController dialogController;
 
 createToDo() {
   DocumentReference documentReference =
@@ -34,12 +36,36 @@ createToDo() {
       .whenComplete(() => print("Data Stored Successfully"));
 }
 
-class _AddTaskState extends State<AddTask> {
+class AddTaskState extends State<AddTask> with SingleTickerProviderStateMixin {
+  late AnimationController dialogController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    dialogController = AnimationController(
+      duration: const Duration(seconds: 3),
+      vsync: this,
+    );
+
+    dialogController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        Navigator.pop(context);
+        dialogController.reset();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    dialogController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     TextEditingController textController = TextEditingController();
     TextEditingController detailController = TextEditingController();
-
     // ignore: no_leading_underscores_for_local_identifiers
     bool _dataValidation() {
       if (textController.text.trim() == '') {
@@ -131,13 +157,21 @@ class _AddTaskState extends State<AddTask> {
       barrierDismissible: false,
       context: context,
       builder: (context) => Dialog(
-        child: Column(mainAxisSize: MainAxisSize.min ,children: [
-          Lottie.asset('assets/lottie.json', repeat: false),
-          const Text('Your task added successfully', style: TextStyle(
-            fontFamily: 'Poppins',
-            fontSize: 24
-          )),
-          const SizedBox(height: 16.0,)
-        ],)
-      ));
+              child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Lottie.asset('assets/lottie.json',
+                  repeat: false,
+                  controller: dialogController,
+                  onLoaded: (composition) {
+                dialogController.forward();
+              }
+              ),
+             const Text('Your task added successfully', textAlign: TextAlign.center,
+                 style: TextStyle(fontFamily: 'Poppins', fontSize: 20)),
+              const SizedBox(
+                height: 16.0,
+              )
+            ],
+          )));
 }
