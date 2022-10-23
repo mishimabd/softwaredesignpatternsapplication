@@ -42,18 +42,18 @@ class _AddTaskState extends State<AddTask> with SingleTickerProviderStateMixin {
     super.initState();
 
     controller = AnimationController(
-      duration: Duration(seconds: 3),
+      duration: const Duration(seconds: 3),
       vsync: this,
     );
 
     controller.addStatusListener((status) async {
       if (status == AnimationStatus.completed) {
-        Navigator.pop(context);
+        Get.back();
         controller.reset();
       }
     });
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     TextEditingController textController = TextEditingController();
@@ -154,8 +154,7 @@ class _AddTaskState extends State<AddTask> with SingleTickerProviderStateMixin {
             children: [
               Lottie.asset('assets/done.json',
                   repeat: false,
-                  controller: controller,
-                  onLoaded: (composition) {
+                  controller: controller, onLoaded: (composition) {
                 controller.duration = composition.duration;
                 controller.forward();
               }),
