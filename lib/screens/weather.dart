@@ -29,7 +29,6 @@ class _WeatherPageState extends State<WeatherPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black38,
         body: FutureBuilder(
             future: getData(),
             builder: (context, snapshot) {
@@ -46,25 +45,13 @@ class _WeatherPageState extends State<WeatherPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const SizedBox(height: 50),
-                        RichText(
-                            text: TextSpan(
-                                text: data!.cityName,
-                                style: const TextStyle(
-                                    fontFamily: 'Poppins',
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold),
-                                // ignore: prefer_const_literals_to_create_immutables
-                                children: [
-                              TextSpan(
-                                  text: '\nWind speed:  ${data!.wind}',
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                  ))
-                            ])),
+                        Text(data!.cityName, style: const TextStyle(fontSize: 50),),
+                        Text('It feels like a ${data!.feels}', style: const TextStyle(fontSize: 20),),
+                        Text('Temperature is ${data!.temp}', style: const TextStyle(fontSize: 20),),
+                        Text('Wind is like a ${data!.wind}', style: const TextStyle(fontSize: 20),),
                         const SizedBox(
                           height: 20,
                         ),
-                      
                       ],
                     ),
                   ),
