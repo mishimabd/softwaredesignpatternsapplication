@@ -70,9 +70,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   fontWeight: FontWeight.bold),
                               // ignore: prefer_const_literals_to_create_immutables
                               children: [
-                            TextSpan(
+                            const TextSpan(
                                 text: '\nWind speed: ',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 12,
                                 ))
                           ])),
