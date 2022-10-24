@@ -6,14 +6,14 @@ import 'package:get/get.dart';
 import '../model/model_weather.dart';
 import '../utils/const.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class WeatherPage extends StatefulWidget {
+  const WeatherPage({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<WeatherPage> createState() => _WeatherPageState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _WeatherPageState extends State<WeatherPage> {
   @override
   void initState() {
     client.getCurrentWeather();
@@ -29,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black38,
         body: FutureBuilder(
             future: getData(),
             builder: (context, snapshot) {
@@ -38,31 +39,34 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: double.maxFinite,
                   height: double.maxFinite,
                   // ignore: sort_child_properties_last
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 50),
-                      RichText(
-                          text: TextSpan(
-                              text: data!.cityName,
-                              style: const TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                              // ignore: prefer_const_literals_to_create_immutables
-                              children: [
-                            TextSpan(
-                                text: '\nWind speed:  ${data!.wind}',
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const SizedBox(height: 50),
+                        RichText(
+                            text: TextSpan(
+                                text: data!.cityName,
                                 style: const TextStyle(
-                                  fontSize: 12,
-                                ))
-                          ])),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                    
-                    ],
+                                    fontFamily: 'Poppins',
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                                // ignore: prefer_const_literals_to_create_immutables
+                                children: [
+                              TextSpan(
+                                  text: '\nWind speed:  ${data!.wind}',
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                  ))
+                            ])),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                      
+                      ],
+                    ),
                   ),
                 );
               } else if (snapshot.connectionState == ConnectionState.waiting) {

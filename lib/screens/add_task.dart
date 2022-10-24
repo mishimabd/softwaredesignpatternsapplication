@@ -42,7 +42,7 @@ class _AddTaskState extends State<AddTask> with SingleTickerProviderStateMixin {
     super.initState();
 
     controller = AnimationController(
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 2),
       vsync: this,
     );
 
