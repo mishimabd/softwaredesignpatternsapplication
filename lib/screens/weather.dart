@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:softwaredesignpatternsapplication/screens/add_task.dart';
-import 'package:softwaredesignpatternsapplication/screens/all_tasks.dart';
 import 'package:softwaredesignpatternsapplication/services/services_api_weather.dart';
 import 'package:softwaredesignpatternsapplication/widgets/button_widget.dart';
 import 'package:get/get.dart';
@@ -44,22 +42,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      //Text above which is just saying "Hello"
-                      RichText(
-                          text: const TextSpan(
-                              text: "Hello",
-                              style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 60,
-                                  fontWeight: FontWeight.bold),
-                              // ignore: prefer_const_literals_to_create_immutables
-                              children: [
-                            TextSpan(
-                                text: '\nProject for finishing all 5 patterns!',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                ))
-                          ])),
                       const SizedBox(height: 50),
                       RichText(
                           text: TextSpan(
@@ -71,44 +53,17 @@ class _HomeScreenState extends State<HomeScreen> {
                               // ignore: prefer_const_literals_to_create_immutables
                               children: [
                             TextSpan(
-                                text: '\nWind speed: ',
+                                text: '\nWind speed:  ${data!.wind}',
                                 style: const TextStyle(
                                   fontSize: 12,
                                 ))
                           ])),
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height / 2.5),
-                      InkWell(
-                        onTap: () {
-                          Get.to(() => const AddTask(),
-                              transition: Transition.cupertinoDialog,
-                              duration: const Duration(milliseconds: 800));
-                        },
-                        child: const ButtonWidget(
-                            text: 'Add Task',
-                            backgroundColor: AppColors.mainColor,
-                            textColor: Colors.white),
-                      ),
                       const SizedBox(
                         height: 20,
                       ),
-                      InkWell(
-                        onTap: () {
-                          Get.to(() => const AllTasks(),
-                              transition: Transition.cupertinoDialog,
-                              duration: const Duration(milliseconds: 800));
-                        },
-                        child: const ButtonWidget(
-                            text: 'View Tasks',
-                            backgroundColor: Colors.white,
-                            textColor: AppColors.mainColor),
-                      )
+                    
                     ],
                   ),
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage('assets/wallpaper.jpg'))),
                 );
               } else if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());

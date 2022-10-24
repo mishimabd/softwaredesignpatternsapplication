@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:softwaredesignpatternsapplication/services/services_api_weather.dart';
 import 'package:softwaredesignpatternsapplication/utils/const.dart';
 import 'package:softwaredesignpatternsapplication/widgets/bottomSheet.dart';
 import 'package:softwaredesignpatternsapplication/widgets/delete_task.dart';
@@ -15,17 +16,19 @@ class SingletonAllTasks extends StatefulWidget {
   @override
   State<SingletonAllTasks> createState() => _SingletonAllTasksState();
 }
+
 //singelton instance that i have from class above
 class _SingletonAllTasksState extends State<SingletonAllTasks>
     with SingleTickerProviderStateMixin {
   late AnimationController controller;
 //creating initStatwe for animation controller
+  WeatherApiClient client = WeatherApiClient();
   @override
   void initState() {
     super.initState();
 
     controller = AnimationController(
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 2),
       vsync: this,
     );
 
@@ -35,7 +38,9 @@ class _SingletonAllTasksState extends State<SingletonAllTasks>
         controller.reset();
       }
     });
+
   }
+
 //main Widget builder
   @override
   Widget build(BuildContext context) {
@@ -162,7 +167,9 @@ class _SingletonAllTasksState extends State<SingletonAllTasks>
               child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const SizedBox(height: 16.0,),
+              const SizedBox(
+                height: 16.0,
+              ),
               Lottie.asset('assets/delete.json',
                   repeat: false,
                   controller: controller, onLoaded: (composition) {
