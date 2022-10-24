@@ -15,11 +15,11 @@ class AllTasks extends StatefulWidget {
   @override
   State<AllTasks> createState() => _AllTasksState();
 }
-
+//singelton instance that i have from class above
 class _AllTasksState extends State<AllTasks>
     with SingleTickerProviderStateMixin {
   late AnimationController controller;
-
+//creating initStatwe for animation controller
   @override
   void initState() {
     super.initState();
@@ -36,7 +36,7 @@ class _AllTasksState extends State<AllTasks>
       }
     });
   }
-
+//main Widget builder
   @override
   Widget build(BuildContext context) {
     final leftIcon = Container(

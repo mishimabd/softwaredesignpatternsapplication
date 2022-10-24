@@ -26,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            //Text above which is just saying "Hello"
             RichText(
                 text: const TextSpan(
                     text: 'Hello!',
