@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class Weather {
   late String cityName;
   late num temp;
