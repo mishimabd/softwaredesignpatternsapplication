@@ -64,11 +64,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               ))
                         ])),
                     SizedBox(height: MediaQuery.of(context).size.height / 9),
-                      const Text("Advice of the day!",
-                              style: TextStyle(
-                                color: Colors.white,
-                                  fontFamily: 'Poppins', fontSize: 20)),
-                          const SizedBox(height: 20),
+                    const Center(
+                      child: Text("Advices for you",
+                      textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Poppins',
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                    const SizedBox(height: 10),
                     Card(
                         child: Center(
                       child: Container(
@@ -78,13 +83,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text("${data!.advise}",
+                            textAlign: TextAlign.center,
                                 style: const TextStyle(
                                     fontFamily: 'Poppins', fontSize: 20)),
                           ],
                         ),
                       ),
                     )),
-                    SizedBox(height: MediaQuery.of(context).size.height / 6),
+                    SizedBox(height: MediaQuery.of(context).size.height / 8),
                     InkWell(
                       onTap: () {
                         Get.to(() => const AddTask(),
