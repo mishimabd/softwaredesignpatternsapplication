@@ -37,6 +37,17 @@ class _HomeScreenState extends State<HomeScreen> {
     data = await client.getCurrentWeather();
   }
 
+   String? weatherCloud;
+  String setImage() {
+    num temp = data!.temp.floor();
+      if (temp > 0) {
+      weatherCloud = 'assets/cloud.png';
+    } else if (temp < 0) {
+      weatherCloud = 'assets/cloudSun.png';
+    }
+    return weatherCloud!;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +82,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ])),
                 Column(
                   children: [
-                    
                     const SizedBox(height: 60),
                     Text(
                       'Temperature in ${data!.cityName}',
@@ -80,8 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontFamily: 'Poppins',
                           color: Colors.white),
                     ),
-                    Image.asset('assets/cloud.png'),
-                    
+                    Image.asset(setImage()),
                     Text(
                       '${data!.temp.floor()}°C',
                       style: const TextStyle(
