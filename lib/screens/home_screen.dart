@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../model/model_weather.dart';
+import '../patterns/builder/builder.dart';
 import '../services/services_api_weather.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -31,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+  ForUsers textInBox = ForUsers();
   WeatherApiClient client = WeatherApiClient();
   Weather? data;
   Future<void> getData() async {
@@ -44,10 +46,22 @@ class _HomeScreenState extends State<HomeScreen> {
       weatherCloud = 'assets/cloud.png';
     } else if (temp > 10) {
       weatherCloud = 'assets/cloudSun.png';
-    } else if (temp < 0){
+    } else if (temp < 0) {
       weatherCloud = 'assets/cloudSnow.png';
     }
     return weatherCloud!;
+  }
+//Builder Pattern
+  String setTextInBox() {
+    num temp = data!.temp.floor();
+    if (temp > 0 && temp < 10) {
+      textInBox.normal();
+    } else if (temp > 10) {
+      textInBox.warm();
+    } else if (temp < 0) {
+      textInBox.cold();
+    }
+    return "${textInBox.text}";
   }
 
   @override
@@ -58,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return Container(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 40),
             width: double.maxFinite,
             height: double.maxFinite,
             // ignore: sort_child_properties_last
@@ -79,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       TextSpan(
                           text: '\nBe productive with Prody!',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 15,
                           ))
                     ])),
                 Column(
@@ -108,17 +122,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontFamily: 'Poppins',
                           color: Colors.white),
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height/12),
+                    SizedBox(height: MediaQuery.of(context).size.height / 12),
                     Container(
                         decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12.0)
-                        ),
-                        padding: const EdgeInsets.all(30),
-                        
-                        child: const Text(
-                          'Weather is looks good for walking, but be sure you got your scarf',
-                          style: TextStyle(color: Colors.black, fontFamily: 'Poppins', fontSize: 18),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12.0)),
+                        padding: const EdgeInsets.all(20),
+                        child: Text(
+                          setTextInBox(),
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'Poppins',
+                              fontSize: 15),
                         )),
                     const SizedBox(
                       height: 20,
@@ -143,3 +158,5 @@ class _HomeScreenState extends State<HomeScreen> {
     ));
   }
 }
+
+

@@ -29,16 +29,21 @@ class _MainPageState extends State<MainPage> {
         unselectedItemColor: Colors.white,
         backgroundColor: Colors.transparent,
         currentIndex: currentindex,
-        selectedLabelStyle: const TextStyle(
-          fontFamily: 'Poppins'
-        ),
-        unselectedLabelStyle: const TextStyle(
-          fontFamily: 'Poppins'
-        ),
+        selectedLabelStyle: const TextStyle(fontFamily: 'Poppins'),
+        unselectedLabelStyle: const TextStyle(fontFamily: 'Poppins'),
         items: const [
-           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home', backgroundColor: Colors.transparent),
-           BottomNavigationBarItem(icon: Icon(Icons.notes_sharp), label: 'To-Do', backgroundColor: Colors.transparent),
-            BottomNavigationBarItem(icon: Icon(Icons.water_drop_outlined), label: 'Water', backgroundColor: Colors.transparent),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+              backgroundColor: Colors.transparent),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.notes_sharp),
+              label: 'To-Do',
+              backgroundColor: Colors.transparent),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.water_drop_outlined),
+              label: 'Water',
+              backgroundColor: Colors.transparent),
         ],
         onTap: (int newIndex) {
           setState(() {
