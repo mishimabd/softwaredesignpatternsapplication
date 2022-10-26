@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         text: "Prody",
                         style: TextStyle(
                             fontFamily: 'Poppins',
-                            fontSize: 60,
+                            fontSize: 55,
                             fontWeight: FontWeight.bold),
                         // ignore: prefer_const_literals_to_create_immutables
                         children: [
@@ -108,17 +108,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontFamily: 'Poppins',
                           color: Colors.white),
                     ),
-                    const SizedBox(height: 20.0,),
+                    SizedBox(height: MediaQuery.of(context).size.height/12),
                     Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(12.0)
                         ),
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(30),
                         
                         child: const Text(
                           'Weather is looks good for walking, but be sure you got your scarf',
-                          style: TextStyle(color: Colors.black, fontFamily: 'Poppins'),
+                          style: TextStyle(color: Colors.black, fontFamily: 'Poppins', fontSize: 18),
                         )),
                     const SizedBox(
                       height: 20,
@@ -126,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 12,
+                  height: MediaQuery.of(context).size.height / 15,
                 )
               ],
             ),

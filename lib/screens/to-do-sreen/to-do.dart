@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:softwaredesignpatternsapplication/model/model_advise.dart';
-import 'package:softwaredesignpatternsapplication/screens/weather.dart';
 import 'package:softwaredesignpatternsapplication/services/services_api_advise.dart';
 import 'package:softwaredesignpatternsapplication/widgets/button_widget.dart';
 import 'package:get/get.dart';
@@ -37,18 +36,18 @@ class _ToDoScreenState extends State<ToDoScreen> {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               return Container(
-                padding: const EdgeInsets.only(left: 20, right: 20),
+                padding: const EdgeInsets.only(left: 20, right: 20, bottom: 85, top: 40),
                 width: double.maxFinite,
                 height: double.maxFinite,
                 // ignore: sort_child_properties_last
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     //Text above which is just saying "Hello"
                     RichText(
                         text: const TextSpan(
-                            text: "ToDo List",
+                            text: "To Do",
                             style: TextStyle(
                                 fontFamily: 'Poppins',
                                 fontSize: 55,
@@ -61,9 +60,37 @@ class _ToDoScreenState extends State<ToDoScreen> {
                                 fontSize: 15,
                               ))
                         ])),
-                    SizedBox(height: MediaQuery.of(context).size.height / 2),
+                    Column(
+                      children: [
+                    const Center(
+                        child: Text(
+                      'Advise special for you',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'Poppins',
+                          fontSize: 18),
+                    )),
+                    const SizedBox(height: 15),
+                    Center(
+                      child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12.0)),
+                          padding: const EdgeInsets.all(20),
+                          child: Text(
+                            '${data!.advise}',
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'Poppins',
+                                fontSize: 20),
+                          )),
+                    ),
+                      ],
+                    ),
 
-                    InkWell(
+                    Container(
+                      child: Column(
+                        children: [InkWell(
                       onTap: () {
                         Get.to(() => const AddTask(),
                             transition: Transition.cupertinoDialog,
@@ -87,9 +114,8 @@ class _ToDoScreenState extends State<ToDoScreen> {
                           text: 'View Tasks',
                           backgroundColor: Colors.white,
                           textColor: AppColors.mainColor),
-                    ),
-                    const SizedBox(
-                      height: 20,
+                    ),],
+                      )
                     ),
                   ],
                 ),
@@ -99,7 +125,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
                         image: AssetImage('assets/wallpaper.jpg'))),
               );
             } else if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             }
             return Container();
           }),
