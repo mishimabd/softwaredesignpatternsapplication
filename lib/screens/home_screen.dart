@@ -37,13 +37,15 @@ class _HomeScreenState extends State<HomeScreen> {
     data = await client.getCurrentWeather();
   }
 
-   String? weatherCloud;
+  String? weatherCloud;
   String setImage() {
     num temp = data!.temp.floor();
-      if (temp > 0) {
+    if (temp > 0) {
       weatherCloud = 'assets/cloud.png';
-    } else if (temp < 0) {
+    } else if (temp > 10) {
       weatherCloud = 'assets/cloudSun.png';
+    } else if (temp < 0){
+      weatherCloud = 'assets/cloudSnow.png';
     }
     return weatherCloud!;
   }
@@ -106,8 +108,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontFamily: 'Poppins',
                           color: Colors.white),
                     ),
-                    const Text(
-                        'Weather is looks good for walking, but be sure you got your scarf'),
+                    const SizedBox(height: 20.0,),
+                    Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12.0)
+                        ),
+                        padding: const EdgeInsets.all(20),
+                        
+                        child: const Text(
+                          'Weather is looks good for walking, but be sure you got your scarf',
+                          style: TextStyle(color: Colors.black, fontFamily: 'Poppins'),
+                        )),
                     const SizedBox(
                       height: 20,
                     ),
