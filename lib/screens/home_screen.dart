@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String? weatherCloud;
   String setImage() {
     num temp = data!.temp.floor();
-    if (temp > 0) {
+    if (temp > 0 && temp <10) {
       weatherCloud = 'assets/cloud.png';
     } else if (temp > 10) {
       weatherCloud = 'assets/cloudSun.png';

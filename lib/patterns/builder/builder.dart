@@ -2,6 +2,7 @@ class ForUsers {
   String? text;
   ForUsers({this.text});
 
+
   void cold() {
     text = 'OMG, it so cold, try to spend your time at home with hot coffee';
   }
@@ -11,7 +12,6 @@ class ForUsers {
   }
 
   void warm() {
-    text =
-        'It\'s beautiful weather outside, spend your time joyfully, and smile :)';
+    text = 'It\'s beautiful weather outside, spend your time joyfully, and smile :)';
   }
 }
