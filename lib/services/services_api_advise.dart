@@ -10,7 +10,6 @@ class AdviseApiClient {
     var response = await http.get(link);
 
     var body = jsonDecode(response.body);
-    print(Advise.fromJson(body));
     
     return Advise.fromJson(body);
   }

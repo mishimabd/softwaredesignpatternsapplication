@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:softwaredesignpatternsapplication/screens/home_screen.dart';
 import 'package:get/get.dart';
+import 'package:softwaredesignpatternsapplication/screens/navbar.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      home: const MainPage(),
     );
   }
 }

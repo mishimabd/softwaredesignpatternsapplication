@@ -6,9 +6,10 @@ import 'package:softwaredesignpatternsapplication/widgets/error_massage_warning.
 import 'package:softwaredesignpatternsapplication/widgets/text_field_widget.dart';
 import 'package:get/get.dart';
 
-import '../patterns/template/error_message_for_details.dart';
-import '../patterns/template/error_message_for_text.dart';
-import '../utils/const.dart';
+import '../../patterns/template/error_message_for_details.dart';
+import '../../patterns/template/error_message_for_text.dart';
+import '../../utils/const.dart';
+
 
 String title = '';
 String description = '';
