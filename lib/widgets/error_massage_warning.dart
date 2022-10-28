@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 abstract class Message {
   void taskErrorOnWarning(String taskName, String taskError) {
     Get.snackbar(taskName, taskError,
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.transparent,
         titleText: Text(taskName,
             style: const TextStyle(
                 fontFamily: 'Poppins',

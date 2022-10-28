@@ -6,6 +6,8 @@ import '../model/model_weather.dart';
 import '../patterns/builder/builder.dart';
 import '../services/services_api_weather.dart';
 
+
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -33,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
     client.getCurrentWeather();
     super.initState();
   }
-  
+
   ColdWeatherFacade facadeCold = ColdWeatherFacade();
   NormalWeatherFacade facadeNormal = NormalWeatherFacade();
   WarmWeatherFacade facadeWarm = WarmWeatherFacade();
@@ -75,6 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return "${textInBox.text}";
   }
 
+  ///
 ///////////////////////////////////////////////
   ///
   ///
@@ -97,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 //Text above which is just saying "Hello"
                 RichText(
-                    text:  const TextSpan(
+                    text: const TextSpan(
                         text: "Prody",
                         style: TextStyle(
                             fontFamily: 'Poppins',

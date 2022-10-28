@@ -125,7 +125,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
                         fit: BoxFit.cover,
                         image: AssetImage('assets/wallpaper.jpg'))),
               );
-            } else if (snapshot.connectionState == ConnectionState.waiting) {
+            } else if (snapshot.connectionState == ConnectionState.active) {
               return Container(
                 decoration: const BoxDecoration(
                     image: DecorationImage(
