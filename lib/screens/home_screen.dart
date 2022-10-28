@@ -162,12 +162,14 @@ class _HomeScreenState extends State<HomeScreen> {
             decoration: const BoxDecoration(
                 image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage('assets/wallpaper.jpg'))),
+                    image: AssetImage('assets/wallpaper.jpg'))
+                    ),
           );
         } else if (snapshot.connectionState == ConnectionState.waiting) {
           return Container(
             decoration: const BoxDecoration(
                 image: DecorationImage(
+                  
                     fit: BoxFit.cover,
                     image: AssetImage('assets/wallpaper.jpg'))),
             child: const Center(

@@ -8,6 +8,8 @@ import 'package:softwaredesignpatternsapplication/widgets/delete_task.dart';
 import 'package:softwaredesignpatternsapplication/widgets/task_widget.dart';
 import 'package:get/get.dart';
 
+import '../../screens/to-do-screen/add_task.dart';
+
 class SingletonAllTasks extends StatefulWidget {
   const SingletonAllTasks({
     super.key,
@@ -38,7 +40,6 @@ class _SingletonAllTasksState extends State<SingletonAllTasks>
         controller.reset();
       }
     });
-
   }
 
 //main Widget builder
@@ -84,7 +85,12 @@ class _SingletonAllTasksState extends State<SingletonAllTasks>
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Row(
             children: [
-              const Icon(Icons.home, color: AppColors.secondaryColor),
+              InkWell(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child:
+                      const Icon(Icons.home, color: AppColors.secondaryColor)),
               const SizedBox(width: 20),
               Container(
                 width: 25,
@@ -92,8 +98,15 @@ class _SingletonAllTasksState extends State<SingletonAllTasks>
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.5),
                     color: Colors.black),
-                child: const Icon(Icons.plus_one_rounded,
-                    color: Colors.white, size: 20),
+                child: InkWell(
+                  onTap: () {
+                    Get.to(() => const AddTask(),
+                        transition: Transition.cupertinoDialog,
+                        duration: const Duration(milliseconds: 800));
+                  },
+                  child: const Icon(Icons.plus_one_rounded,
+                      color: Colors.white, size: 20),
+                ),
               ),
               Expanded(child: Container()),
               const Icon(Icons.calendar_month, color: AppColors.secondaryColor),
