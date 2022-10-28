@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String? weatherCloud;
   String setImage() {
     num temp = data!.temp.floor();
-    if (temp > 0 && temp <10) {
+    if (temp > 0 && temp < 10) {
       weatherCloud = 'assets/cloud.png';
     } else if (temp > 10) {
       weatherCloud = 'assets/cloudSun.png';
@@ -51,7 +51,8 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     return weatherCloud!;
   }
-//Builder Pattern
+
+/////////////Builder Pattern///////////////////
   String setTextInBox() {
     num temp = data!.temp.floor();
     if (temp > 0 && temp < 10) {
@@ -63,6 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     return "${textInBox.text}";
   }
+///////////////////////////////////////////////
 
   @override
   Widget build(BuildContext context) {
@@ -151,12 +153,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     image: AssetImage('assets/wallpaper.jpg'))),
           );
         } else if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          return Container ( decoration: const BoxDecoration(
+                image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage('assets/wallpaper.jpg'))),
+                    child: const Center(child: CircularProgressIndicator(backgroundColor: Colors.transparent,)),
+            );
         }
         return Container();
       },
     ));
   }
 }
-
-

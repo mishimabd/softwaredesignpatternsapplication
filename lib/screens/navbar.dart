@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:softwaredesignpatternsapplication/screens/home_screen.dart';
-import 'package:softwaredesignpatternsapplication/screens/to-do-sreen/to-do.dart';
+import 'package:softwaredesignpatternsapplication/screens/to-do-screen/to-do.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});

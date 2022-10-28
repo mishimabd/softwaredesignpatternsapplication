@@ -125,8 +125,12 @@ class _ToDoScreenState extends State<ToDoScreen> {
                         image: AssetImage('assets/wallpaper.jpg'))),
               );
             } else if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            }
+              return Container ( decoration: const BoxDecoration(
+                image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage('assets/wallpaper.jpg'))),
+                    child: const Center(child: CircularProgressIndicator(backgroundColor: Colors.transparent,)),
+            );}
             return Container();
           }),
     );
