@@ -59,8 +59,8 @@ class _AddTaskState extends State<AddTask> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     TextEditingController textController = TextEditingController();
     TextEditingController detailController = TextEditingController();
-    // ignore: no_leading_underscores_for_local_identifiers
-    bool _dataValidation() {
+//////////////////////////Template Pattern////////////////////////////////
+    bool dataValidation() {
       if (textController.text.trim() == '') {
         messageText.taskErrorOnWarning('Task Name', 'Task Name is empty.');
         return false;
@@ -78,7 +78,7 @@ class _AddTaskState extends State<AddTask> with SingleTickerProviderStateMixin {
       }
       return true;
     }
-
+////////////////////////////////////////////////////////////////////////////
     return Scaffold(
         body: Container(
       padding: const EdgeInsets.only(left: 20, right: 20),
@@ -122,7 +122,7 @@ class _AddTaskState extends State<AddTask> with SingleTickerProviderStateMixin {
                 const SizedBox(height: 20),
                 GestureDetector(
                   onTap: () async {
-                    if (_dataValidation()) {
+                    if (dataValidation()) {
                       setState(() {
                         title = textController.text;
                         description = detailController.text;

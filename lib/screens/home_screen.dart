@@ -58,11 +58,10 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     return facade;
   }
-
 ///////////////////////////////////////////////
-  ///
-  ///
-  ///
+///
+///
+///
 /////////////Builder Pattern///////////////////
   String setTextInBox() {
     num temp = data!.temp.floor();
@@ -76,7 +75,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return "${textInBox.text}";
   }
 ///////////////////////////////////////////////
-
+///
+///
+///
   @override
   Widget build(BuildContext context) {
     return Scaffold(
