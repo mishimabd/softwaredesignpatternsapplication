@@ -29,8 +29,7 @@ createToDo() {
 
   Map<String, String> todoList = {'todotitle': title, 'tododesc': description};
 
-  documentReference
-      .set(todoList)
+  documentReference.set(todoList)
       // ignore: avoid_print
       .whenComplete(() => print("Data Stored Successfully"));
 }

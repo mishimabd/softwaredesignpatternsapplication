@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:softwaredesignpatternsapplication/patterns/facade/facade.dart';
-import 'package:softwaredesignpatternsapplication/patterns/state/state.dart';
 
 import '../model/model_weather.dart';
 import '../patterns/builder/builder.dart';
@@ -44,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> getData() async {
     data = await client.getCurrentWeather();
   }
-
+  
 ////////////Facade Pattern////////////////////
   String setImage() {
     
