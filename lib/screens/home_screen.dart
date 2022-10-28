@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:softwaredesignpatternsapplication/patterns/facade/facade.dart';
+import 'package:softwaredesignpatternsapplication/patterns/state/state.dart';
 
 import '../model/model_weather.dart';
 import '../patterns/builder/builder.dart';
@@ -32,6 +34,9 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+  ColdWeatherFacade facadeCold = ColdWeatherFacade();
+  NormalWeatherFacade facadeNormal = NormalWeatherFacade();
+  WarmWeatherFacade facadeWarm = WarmWeatherFacade();
   ForUsers textInBox = ForUsers();
   WeatherApiClient client = WeatherApiClient();
   Weather? data;
@@ -39,19 +44,25 @@ class _HomeScreenState extends State<HomeScreen> {
     data = await client.getCurrentWeather();
   }
 
-  String? weatherCloud;
+////////////Facade Pattern////////////////////
   String setImage() {
+    
+    late String facade;
     num temp = data!.temp.floor();
     if (temp > 0 && temp < 10) {
-      weatherCloud = 'assets/cloud.png';
+      facade = facadeNormal.normalWeather();
     } else if (temp > 10) {
-      weatherCloud = 'assets/cloudSun.png';
+      facade = facadeWarm.warmWeather();
     } else if (temp < 0) {
-      weatherCloud = 'assets/cloudSnow.png';
+      facade = facadeCold.coldWeather();
     }
-    return weatherCloud!;
+    return facade;
   }
 
+///////////////////////////////////////////////
+  ///
+  ///
+  ///
 /////////////Builder Pattern///////////////////
   String setTextInBox() {
     num temp = data!.temp.floor();
@@ -153,12 +164,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     image: AssetImage('assets/wallpaper.jpg'))),
           );
         } else if (snapshot.connectionState == ConnectionState.waiting) {
-          return Container ( decoration: const BoxDecoration(
+          return Container(
+            decoration: const BoxDecoration(
                 image: DecorationImage(
                     fit: BoxFit.cover,
                     image: AssetImage('assets/wallpaper.jpg'))),
-                    child: const Center(child: CircularProgressIndicator(backgroundColor: Colors.transparent,)),
-            );
+            child: const Center(
+                child: CircularProgressIndicator(
+              backgroundColor: Colors.transparent,
+            )),
+          );
         }
         return Container();
       },

@@ -36,7 +36,8 @@ class _ToDoScreenState extends State<ToDoScreen> {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               return Container(
-                padding: const EdgeInsets.only(left: 20, right: 20, bottom: 85, top: 40),
+                padding: const EdgeInsets.only(
+                    left: 20, right: 20, bottom: 85, top: 60),
                 width: double.maxFinite,
                 height: double.maxFinite,
                 // ignore: sort_child_properties_last
@@ -62,60 +63,60 @@ class _ToDoScreenState extends State<ToDoScreen> {
                         ])),
                     Column(
                       children: [
-                    const Center(
-                        child: Text(
-                      'Advise special for you',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Poppins',
-                          fontSize: 18),
-                    )),
-                    const SizedBox(height: 15),
-                    Center(
-                      child: Container(
-                          decoration: BoxDecoration(
+                        const Center(
+                            child: Text(
+                          'Advise special for you',
+                          style: TextStyle(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(12.0)),
-                          padding: const EdgeInsets.all(20),
-                          child: Text(
-                            '${data!.advise}',
-                            style: const TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Poppins',
-                                fontSize: 20),
-                          )),
-                    ),
+                              fontFamily: 'Poppins',
+                              fontSize: 18),
+                        )),
+                        const SizedBox(height: 15),
+                        Center(
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12.0)),
+                              padding: const EdgeInsets.all(20),
+                              child: Text(
+                                '${data!.advise}',
+                                style: const TextStyle(
+                                    color: Colors.black,
+                                    fontFamily: 'Poppins',
+                                    fontSize: 20),
+                              )),
+                        ),
                       ],
                     ),
 
-                    Container(
-                      child: Column(
-                        children: [InkWell(
-                      onTap: () {
-                        Get.to(() => const AddTask(),
-                            transition: Transition.cupertinoDialog,
-                            duration: const Duration(milliseconds: 800));
-                      },
-                      child: const ButtonWidget(
-                          text: 'Add Task',
-                          backgroundColor: AppColors.mainColor,
-                          textColor: Colors.white),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Get.to(() => const AllTasks(),
-                            transition: Transition.cupertinoDialog,
-                            duration: const Duration(milliseconds: 800));
-                      },
-                      child: const ButtonWidget(
-                          text: 'View Tasks',
-                          backgroundColor: Colors.white,
-                          textColor: AppColors.mainColor),
-                    ),],
-                      )
+                    Column(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Get.to(() => const AddTask(),
+                                transition: Transition.cupertinoDialog,
+                                duration: const Duration(milliseconds: 800));
+                          },
+                          child: const ButtonWidget(
+                              text: 'Add Task',
+                              backgroundColor: AppColors.mainColor,
+                              textColor: Colors.white),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Get.to(() => const AllTasks(),
+                                transition: Transition.cupertinoDialog,
+                                duration: const Duration(milliseconds: 800));
+                          },
+                          child: const ButtonWidget(
+                              text: 'View Tasks',
+                              backgroundColor: Colors.white,
+                              textColor: AppColors.mainColor),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -125,12 +126,17 @@ class _ToDoScreenState extends State<ToDoScreen> {
                         image: AssetImage('assets/wallpaper.jpg'))),
               );
             } else if (snapshot.connectionState == ConnectionState.waiting) {
-              return Container ( decoration: const BoxDecoration(
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/wallpaper.jpg'))),
-                    child: const Center(child: CircularProgressIndicator(backgroundColor: Colors.transparent,)),
-            );}
+              return Container(
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage('assets/wallpaper.jpg'))),
+                child: const Center(
+                    child: CircularProgressIndicator(
+                  backgroundColor: Colors.transparent,
+                )),
+              );
+            }
             return Container();
           }),
     );
