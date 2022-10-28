@@ -32,8 +32,9 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     client.getCurrentWeather();
     super.initState();
+    
   }
-
+  DateTime dateTime = DateTime.now();
   ColdWeatherFacade facadeCold = ColdWeatherFacade();
   NormalWeatherFacade facadeNormal = NormalWeatherFacade();
   WarmWeatherFacade facadeWarm = WarmWeatherFacade();
@@ -55,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
       facade = facadeWarm.warmWeather();
     } else if (temp < 0) {
       facade = facadeCold.coldWeather();
-    }
+    }  
     return facade;
   }
 ///////////////////////////////////////////////

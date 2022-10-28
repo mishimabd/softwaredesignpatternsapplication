@@ -9,9 +9,13 @@ class AllTasks extends StatefulWidget {
 }
 
 class _AllTasksState extends State<AllTasks> {
-  final SingletonAllTasks singleton = const  SingletonAllTasks();
+  final SingletonAllTasks singleton = const SingletonAllTasks();
   @override
   Widget build(BuildContext context) {
+    
+    
+    ///////////////////Singleton Pattern///////////////////
     return singleton;
+    ///////////////////////////////////////////////////////
   }
 }
