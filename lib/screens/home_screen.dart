@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:softwaredesignpatternsapplication/patterns/facade/facade.dart';
+import 'package:softwaredesignpatternsapplication/patterns/strategy/nameOfTheTitle.dart';
 
 import '../model/model_weather.dart';
 import '../patterns/builder/builder.dart';
@@ -31,9 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     client.getCurrentWeather();
     super.initState();
-    
   }
-  DateTime dateTime = DateTime.now();
+  
   ColdWeatherFacade facadeCold = ColdWeatherFacade();
   NormalWeatherFacade facadeNormal = NormalWeatherFacade();
   WarmWeatherFacade facadeWarm = WarmWeatherFacade();
@@ -43,10 +43,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> getData() async {
     data = await client.getCurrentWeather();
   }
-  
+
 ////////////Facade Pattern////////////////////
   String setImage() {
-    
     late String facade;
     num temp = data!.temp.floor();
     if (temp > 0 && temp < 10) {
@@ -55,13 +54,14 @@ class _HomeScreenState extends State<HomeScreen> {
       facade = facadeWarm.warmWeather();
     } else if (temp < 0) {
       facade = facadeCold.coldWeather();
-    }  
+    }
     return facade;
   }
+
 ///////////////////////////////////////////////
-///
-///
-///
+  ///
+  ///
+  ///
 /////////////Builder Pattern///////////////////
   String setTextInBox() {
     num temp = data!.temp.floor();
@@ -74,10 +74,11 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     return "${textInBox.text}";
   }
+
 ///////////////////////////////////////////////
-///
-///
-///
+  ///
+  ///
+  ///
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 //Text above which is just saying "Hello"
                 RichText(
-                    text: const TextSpan(
+                    text:  const TextSpan(
                         text: "Prody",
                         style: TextStyle(
                             fontFamily: 'Poppins',
@@ -162,14 +163,12 @@ class _HomeScreenState extends State<HomeScreen> {
             decoration: const BoxDecoration(
                 image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage('assets/wallpaper.jpg'))
-                    ),
+                    image: AssetImage('assets/wallpaper.jpg'))),
           );
         } else if (snapshot.connectionState == ConnectionState.waiting) {
           return Container(
             decoration: const BoxDecoration(
                 image: DecorationImage(
-                  
                     fit: BoxFit.cover,
                     image: AssetImage('assets/wallpaper.jpg'))),
             child: const Center(
