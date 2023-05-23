@@ -124,7 +124,7 @@ class _SingletonAllTasksState extends State<SingletonAllTasks>
                 FirebaseFirestore.instance.collection('MyTodos').snapshots(),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              int loli = snapshot.data!.docs.length;
+              int loli = snapshot.data?.docs.length ?? 0;
               if (snapshot.hasData) {
                 return ListView.builder(
                   itemCount: loli,
