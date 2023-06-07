@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:softwaredesignpatternsapplication/screens/navbar.dart';
 
 class LoginApp extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +18,7 @@ class LoginApp extends StatelessWidget {
         '/': (context) => LoginPage(),
         '/home': (context) => MainPage(),
         '/register': (context) => RegisterPage(),
-        '/profile': (context) => ProfilePage(),
+
       },
     );
   }
@@ -25,6 +28,7 @@ class LoginPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   @override
   Widget build(BuildContext context) {
@@ -62,20 +66,57 @@ class LoginPage extends StatelessWidget {
                     email: email,
                     password: password,
                   );
-                  // Вход в систему успешен, выполните необходимые действия
+                  // Successful login, perform necessary actions
                   Navigator.pushNamed(context, '/home');
-                  print('Вход в систему успешен: ${userCredential.user!.email}');
+                  print('Login successful: ${userCredential.user!.email}');
                 } catch (e) {
-                  // Обработка ошибок входа в систему
-                  print('Ошибка входа в систему: $e');
+                  // Handle login errors
+                  print('Login error: $e');
                 }
               },
             ),
+            SizedBox(height: 16.0),
+            ElevatedButton(
+              child: Text('Sign In with Google'),
+              onPressed: () async {
+                try {
+                  final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+                  final GoogleSignInAuthentication googleAuth = await googleUser!.authentication;
+                  final AuthCredential credential = GoogleAuthProvider.credential(
+                    accessToken: googleAuth.accessToken,
+                    idToken: googleAuth.idToken,
+                  );
+                  final UserCredential userCredential = await _auth.signInWithCredential(credential);
+                  // Successful Google login, perform necessary actions
+                  Navigator.pushNamed(context, '/home'); // Updated navigation to '/home'
+                  print('Google login successful: ${userCredential.user!.email}');
+                } catch (e) {
+                  // Handle Google login errors
+                  print('Google login error: $e');
+                }
+              },
+            ),
+
             SizedBox(height: 16.0),
             TextButton(
               child: Text('Register'),
               onPressed: () {
                 Navigator.pushNamed(context, '/register');
+              },
+            ),
+            SizedBox(height: 16.0),
+            TextButton(
+              child: Text('Login as Guest'),
+              onPressed: () async {
+                try {
+                  UserCredential userCredential = await _auth.signInAnonymously();
+                  // Successful guest login, perform necessary actions
+                  Navigator.pushNamed(context, '/home');
+                  print('Guest login successful: ${userCredential.user!.uid}');
+                } catch (e) {
+                  // Handle guest login errors
+                  print('Guest login error: $e');
+                }
               },
             ),
           ],
@@ -84,6 +125,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
+
 
 class RegisterPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -120,7 +162,19 @@ class RegisterPage extends StatelessWidget {
               onPressed: () async {
                 String email = emailController.text;
                 String password = passwordController.text;
-                Navigator.pushNamed(context, '/home');
+
+                try {
+                  UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+                    email: email,
+                    password: password,
+                  );
+                  // Successful registration, perform necessary actions
+                  Navigator.pushNamed(context, '/home');
+                  print('Registration successful: ${userCredential.user!.email}');
+                } catch (e) {
+                  // Handle registration errors
+                  print('Registration error: $e');
+                }
               },
             ),
           ],
@@ -130,86 +184,4 @@ class RegisterPage extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-
-  @override
-  Widget build(BuildContext context) {
-    User? user = _auth.currentUser;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home Page'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Welcome to the Home Page!'),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              child: Text('Logout'),
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-                Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
-              },
-            ),
-            SizedBox(height: 16.0),
-            ElevatedButton(
-              child: Text('Profile'),
-              onPressed: () {
-                Navigator.pushNamed(context, '/profile');
-              },
-            ),
-            SizedBox(height: 16.0),
-            TextButton(
-              child: Text('Account Info'),
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: Text('Account Info'),
-                      content: Text('Email: ${user?.email ?? 'Unknown'}'),
-                      actions: [
-                        ElevatedButton(
-                          child: Text('OK'),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ProfilePage extends StatelessWidget {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-
-  @override
-  Widget build(BuildContext context) {
-    User? user = _auth.currentUser;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Profile Page'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Profile Page'),
-            SizedBox(height: 16.0),
-            Text('Email: ${user?.email ?? 'Unknown'}'),
-          ],
-        ),
-      ),
-    );
-  }
-}
+// Remaining classes remain the same...

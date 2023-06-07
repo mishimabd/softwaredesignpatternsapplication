@@ -14,6 +14,7 @@ class _MainPageState extends State<MainPage> {
   List<Widget> screens = const [
     HomeScreen(),
     ToDoScreen(),
+    Text('Admin Page')
   ];
   @override
   Widget build(BuildContext context) {
@@ -38,6 +39,10 @@ class _MainPageState extends State<MainPage> {
           BottomNavigationBarItem(
               icon: Icon(Icons.notes_sharp),
               label: 'To-Do',
+              backgroundColor: Colors.transparent),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Admin',
               backgroundColor: Colors.transparent),
         ],
         onTap: (int newIndex) {

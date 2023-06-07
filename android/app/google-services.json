@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "833083095221",
-    "project_id": "design-8476d",
-    "storage_bucket": "design-8476d.appspot.com"
+    "project_number": "531275874640",
+    "project_id": "to-do-list-dart",
+    "storage_bucket": "to-do-list-dart.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:833083095221:android:a23d7a9da7f87fedf866fc",
+        "mobilesdk_app_id": "1:531275874640:android:0196c66eba969c3f022c55",
         "android_client_info": {
           "package_name": "com.example.softwaredesignpatternsapplication"
         }
       },
       "oauth_client": [
         {
-          "client_id": "833083095221-g8psros3pk5kuncs7lgk4fpkvukl6pqq.apps.googleusercontent.com",
+          "client_id": "531275874640-uffgk2uq0r9t95n7vrp0ilk8lpqdpj4m.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBoT5PH8T5Y3iS_JmRH3o7N1M7I1AncWp4"
+          "current_key": "AIzaSyA4fvvW9uBdBl3JN5nTbddy51ltkHJRH6s"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "833083095221-g8psros3pk5kuncs7lgk4fpkvukl6pqq.apps.googleusercontent.com",
+              "client_id": "531275874640-jd6su779m5hq66no45t7qimoaav6mf10.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

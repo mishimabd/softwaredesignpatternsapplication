@@ -42,6 +42,11 @@ dependencies:
   lottie: 
   http: ^0.13.5
   firebase_auth:
+  google_sign_in:
+
+  flutter_localizations:
+    sdk: flutter
+  intl:
 
 dev_dependencies:
   flutter_test:
